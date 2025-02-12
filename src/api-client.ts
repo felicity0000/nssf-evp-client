@@ -19,7 +19,8 @@ export const validateToken = async () => {
   const response = await fetch(`${API_BASE_URL}/api/users/validate-token`, {
     credentials: "include",
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
     },
   });
 
