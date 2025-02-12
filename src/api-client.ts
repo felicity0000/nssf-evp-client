@@ -1,11 +1,10 @@
 import { SignInFormData } from "./pages/SignIn";
-import {  UserType } from "../../nssf-evp-api/src/types/types";
 import { FeedbackFormData } from "./pages/AddFeedback";
 
 const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "";
 
 // fetch user function
-export const fetchCurrentUser = async (): Promise<UserType> => {
+export const fetchCurrentUser = async () => {
   const response = await fetch(`${API_BASE_URL}/api/users/me`, {
     credentials: "include",
   });
