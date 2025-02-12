@@ -18,6 +18,9 @@ export const fetchCurrentUser = async () => {
 export const validateToken = async () => {
   const response = await fetch(`${API_BASE_URL}/api/users/validate-token`, {
     credentials: "include",
+    headers: {
+      'Content-Type': 'application/json'
+    },
   });
 
   if (!response.ok) {
