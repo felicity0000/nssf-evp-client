@@ -17,7 +17,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout><SignIn /></Layout>} />
+        <Route path="/" element={<SignIn />} />
         
         {/* Protected route for employees only */}
         <Route element={<ProtectedRoute allowedRoles={["employee"]} />}>
