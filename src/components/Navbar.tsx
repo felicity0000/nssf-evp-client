@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { assets } from "../assets/assets";
 import { useAppContext } from "../contexts/AppContext";
 import SignOutButton from "./SignOutButton";
 import {
@@ -11,7 +10,6 @@ import {
   FaTachometerAlt,
   FaUser,
   FaCog,
-  FaBell,
   FaUserCircle,
 } from "react-icons/fa";
 
