@@ -1,5 +1,6 @@
 import { SignInFormData } from "./pages/SignIn";
 import { FeedbackFormData } from "./pages/AddFeedback";
+import { MoodFormData } from "./pages/MoodPage";
 
 const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "";
 
@@ -62,6 +63,26 @@ export const signOut = async () => {
   if (!response.ok) {
     throw new Error("Error during sign out");
   }
+};
+
+// create feedback function
+export const addMood = async (formData :MoodFormData) => {
+  const response = await fetch(`${API_BASE_URL}/api/moods/`, {
+    credentials:"include",
+    headers: {
+      "Content-Type":"application/json"
+    },
+    method:"POST",
+    body: JSON.stringify(formData),
+  });
+
+  const body = await response.json();
+  
+  if(!response.ok) {
+    throw new Error(body.message);
+  }
+
+  return body;
 };
 
 // create feedback function

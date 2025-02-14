@@ -1,13 +1,9 @@
 // LineGraph.tsx
-
 import React, { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";  // Import Line chart from react-chartjs-2
-import * as apiClient from "../api-client";  // Your API client for fetching data
-
-// Import Chart.js components and register necessary elements
+import { Line } from "react-chartjs-2";
+import * as apiClient from "../api-client";
 import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement } from "chart.js";
 
-// Register the components with Chart.js
 ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement);
 
 interface LineGraphData {
@@ -35,8 +31,10 @@ const LineGraph: React.FC = () => {
     loadLineGraphData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (loading) return <div className="flex justify-center items-center h-64">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+  </div>;
+  if (error) return <div className="text-red-500 text-center">{error}</div>;
 
   const data = {
     labels: chartData?.map(item => item.date) || [],
@@ -46,15 +44,32 @@ const LineGraph: React.FC = () => {
         data: chartData?.map(item => item.count) || [],
         fill: false,
         borderColor: "#4BC0C0",
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
         tension: 0.1,
       },
     ],
   };
 
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top' as const,
+      },
+      title: {
+        display: true,
+        text: 'Feedback Counts Over Time',
+        font: {
+          size: 16,
+        },
+      },
+    },
+  };
+
   return (
-    <div className="h-[300px]"> {/* Control the height */}
-      <h2 className="text-center">Line Graph of Feedback Counts Over Time</h2>
-      <Line data={data} />
+    <div className="h-80">
+      <Line data={data} options={options} />
     </div>
   );
 };

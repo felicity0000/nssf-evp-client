@@ -1,13 +1,9 @@
 // PieChart.tsx
-
 import React, { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
-import * as apiClient from "../api-client";  // Your API client for fetching data
-
-// Import Chart.js components and register necessary elements
+import * as apiClient from "../api-client";
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale } from "chart.js";
 
-// Register the components with Chart.js
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
 
 interface FeedbackData {
@@ -35,8 +31,10 @@ const PieChart: React.FC = () => {
     loadPieChartData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (loading) return <div className="flex justify-center items-center h-64">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+  </div>;
+  if (error) return <div className="text-red-500 text-center">{error}</div>;
 
   const data = {
     labels: chartData?.map(item => item.department) || [],
@@ -49,10 +47,26 @@ const PieChart: React.FC = () => {
     ],
   };
 
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'right' as const,
+      },
+      title: {
+        display: true,
+        text: 'Feedbacks by Department',
+        font: {
+          size: 16,
+        },
+      },
+    },
+  };
+
   return (
-    <div className="h-[300px]"> {/* Control the height */}
-      <h2 className="text-center">Pie Chart of Feedbacks by Department</h2>
-      <Pie data={data} />
+    <div className="h-80">
+      <Pie data={data} options={options} />
     </div>
   );
 };

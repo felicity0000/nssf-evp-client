@@ -60,7 +60,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-blue-950 shadow-xl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo Section */}
           <div className="flex-shrink-0 flex items-center">
@@ -68,12 +68,7 @@ const Navbar = () => {
               to=""
               className="flex items-center space-x-2 hover:opacity-90 transition-opacity"
             >
-              <img
-                className="h-10 w-auto"
-                src={assets.nssf_logo || "/placeholder.svg"}
-                alt="NSSF Logo"
-              />
-              <span className="font-bold text-white text-xl tracking-wider">
+              <span className="font-bold text-white text-3xl tracking-wider">
                 EVP
               </span>
             </Link>
@@ -126,12 +121,6 @@ const Navbar = () => {
 
           {/* Right Section with Notifications and User Dropdown */}
           <div className="flex items-center space-x-4">
-            {isLoggedIn && (
-              <button className="text-white hover:text-blue-200 transition-colors">
-                <FaBell className="text-xl" />
-              </button>
-            )}
-
             <div className="relative" ref={dropdownRef}>
               {isLoggedIn ? (
                 <>

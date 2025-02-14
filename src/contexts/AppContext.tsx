@@ -11,8 +11,8 @@ type ToastMessage = {
 type AppContext = {
   showToast: (toastMessage: ToastMessage) => void;
   isLoggedIn: boolean;
-  role: "employee" | "admin" | "problem_solver" | null;
-  user: { userId:string, username: string; department: string } | null;
+  role: "employee" | "admin" | "problem_solver";
+  user: { userId: string; username: string; department: string } | null;
 };
 
 const AppContext = React.createContext<AppContext | undefined>(undefined);
@@ -20,34 +20,37 @@ const AppContext = React.createContext<AppContext | undefined>(undefined);
 export const AppContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [toast, setToast] = useState<ToastMessage | undefined>(undefined);
 
-  // Correct usage with `useQuery`
+  // Fetch user data and validate token
   const { data, isLoading, isError } = useQuery({
     queryKey: ["validateToken"],
     queryFn: apiClient.validateToken,
     retry: false,
   });
 
-    // Log the current state
-    console.log("AppContext State:", { isLoading, isError, data })
+  // Console logs for debugging
+  console.log("API Response from validateToken:", data);
+  console.log("isLoading:", isLoading);
+  console.log("isError:", isError);
 
-  // If data is loading, return a loading state or null
-  if (isLoading) {
-    return <div>Loading...</div>; // Or any loading spinner you prefer
-  }
+  // Extract role and user from the response
+  const role = data?.role;
+  const isLoggedIn = !isError && !!role;
 
-  // Extract role and user from the data
-  const role = data?.role ?? null; // Ensure fallback for null or undefined role
-  const isLoggedIn = !isError && !!role; // Ensure we are logged in only if no error and role exists
+  console.log("Extracted Role:", role);
+  console.log("Is Logged In:", isLoggedIn);
+  console.log("User Data:", data?.user);
 
   return (
-    <AppContext.Provider value={{ 
-      showToast: (toastMessage) => {
-        setToast(toastMessage);
-      },
-      isLoggedIn,
-      role,
-      user: data?.user || null 
-    }}>
+    <AppContext.Provider
+      value={{
+        showToast: (toastMessage) => {
+          setToast(toastMessage);
+        },
+        isLoggedIn,
+        role,
+        user: data?.user,
+      }}
+    >
       {toast && (
         <Toast
           message={toast.message}
@@ -55,7 +58,7 @@ export const AppContextProvider = ({ children }: { children: React.ReactNode }) 
           onClose={() => setToast(undefined)}
         />
       )}
-      {children}
+      {isLoading ? <div className="h-screen flex items-center justify-center">Loading...</div> : children}
     </AppContext.Provider>
   );
 };

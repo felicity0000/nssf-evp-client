@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import Resolving from "./pages/Resolving";
 import Resolved from "./pages/Resolved";
 import FeedbackDetails from "./pages/FeedbackDetails";
+import MoodPage from "./pages/MoodPage";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         
         {/* Protected route for employees only */}
         <Route element={<ProtectedRoute allowedRoles={["employee"]} />}>
+        <Route path="/mood" element={<Layout><MoodPage /></Layout>} />
           <Route path="/add-feedback" element={<Layout><AddFeedback /></Layout>} />
           <Route path="/resolved" element={<Layout><Resolved/></Layout>}/>
         </Route>
