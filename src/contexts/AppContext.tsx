@@ -28,17 +28,17 @@ export const AppContextProvider = ({ children }: { children: React.ReactNode }) 
   });
 
   // Console logs for debugging
-  console.log("API Response from validateToken:", data);
-  console.log("isLoading:", isLoading);
-  console.log("isError:", isError);
+  // console.log("API Response from validateToken:", data);
+  // console.log("isLoading:", isLoading);
+  // console.log("isError:", isError);
 
   // Extract role and user from the response
   const role = data?.role;
   const isLoggedIn = !isError && !!role;
 
-  console.log("Extracted Role:", role);
-  console.log("Is Logged In:", isLoggedIn);
-  console.log("User Data:", data?.user);
+  // console.log("Extracted Role:", role);
+  // console.log("Is Logged In:", isLoggedIn);
+  // console.log("User Data:", data?.user);
 
   return (
     <AppContext.Provider
