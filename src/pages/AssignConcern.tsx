@@ -16,8 +16,6 @@ const AssignConcern = () => {
     queryFn: apiClient.fetchProblemSolvers,
   });
 
-  console.log(problemSolvers); // Inspect structure of the data
-
   // Mutation for assigning a user
   const assignUserMutation = useMutation({
     mutationFn: ({ feedbackId, assignedTo }: { feedbackId: string; assignedTo: string }) =>
@@ -69,34 +67,41 @@ const AssignConcern = () => {
 
             {/* Assign User Action */}
             <div>
-              {feedback.status === "Pending" && (
-                <div className="flex items-center gap-2">
-                  <select
-                    className="p-1 border rounded"
-                    onChange={(e) => (feedback.selectedUser = e.target.value)} // Dynamically set selectedUser
-                  >
-                    <option value="">Select User</option>
-                    {problemSolvers?.problemSolvers?.length > 0 ? (
-                      problemSolvers.problemSolvers.map((user: any) => (
-                        <option key={user.id} value={user.username}>
-                          {user.username}
-                        </option>
-                      ))
-                    ) : (
-                      <option disabled>No problem solvers available</option>
-                    )}
-                  </select>
-                  <button
-                    className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
-                    onClick={() => handleAssignUser(feedback._id, feedback.selectedUser)}
-                  >
-                    Assign
-                  </button>
-                </div>
-              )}
-
-              {feedback.status === "In Progress" && <span className="text-gray-500 font-semibold">In Progress</span>}
-              {feedback.status === "Resolved" && <span className="text-gray-500 font-semibold">Resolved</span>}
+              {feedback.status === "Pending" ? (
+                feedback.approval ? (
+                  // ✅ Feedback approved - show assignment options
+                  <div className="flex items-center gap-2">
+                    <select
+                      className="p-1 border rounded"
+                      onChange={(e) => (feedback.selectedUser = e.target.value)} // Set selected user
+                    >
+                      <option value="">Select User</option>
+                      {problemSolvers?.problemSolvers?.length > 0 ? (
+                        problemSolvers.problemSolvers.map((user: any) => (
+                          <option key={user.id} value={user.username}>
+                            {user.username}
+                          </option>
+                        ))
+                      ) : (
+                        <option disabled>No problem solvers available</option>
+                      )}
+                    </select>
+                    <button
+                      className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+                      onClick={() => handleAssignUser(feedback._id, feedback.selectedUser)}
+                    >
+                      Assign
+                    </button>
+                  </div>
+                ) : (
+                  // 🚫 Not approved yet
+                  <span className="text-yellow-500 font-semibold">Awaiting Approval</span>
+                )
+              ) : feedback.status === "In Progress" ? (
+                <span className="text-gray-500 font-semibold">In Progress</span>
+              ) : feedback.status === "Resolved" ? (
+                <span className="text-gray-500 font-semibold">Resolved</span>
+              ) : null}
             </div>
           </div>
         ))

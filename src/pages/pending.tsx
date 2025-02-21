@@ -55,6 +55,9 @@ const Pending = () => {
             dislikes={feedback.dislikes}
             createdBy={feedback.isAnonymous ? "Anonymous" : feedback.name || "Unknown"}
             feedbackId={feedback._id}
+            likedBy={feedback.likedBy || []}
+            dislikedBy={feedback.dislikedBy || []}
+            currentUsername={feedback.currentUsername || "Unknown"}
             onLike={() => alert(`Liked feedback: ${feedback._id}`)}
             onDislike={() => alert(`Disliked feedback: ${feedback._id}`)}
             onCommentClick={() => alert(`Comment on feedback: ${feedback._id}`)}

@@ -12,6 +12,7 @@ import Resolving from "./pages/Resolving";
 import Resolved from "./pages/Resolved";
 import FeedbackDetails from "./pages/FeedbackDetails";
 import MoodPage from "./pages/MoodPage";
+import AdminApproval from "./pages/AdminApproval";
 
 const App = () => {
   return (
@@ -21,17 +22,17 @@ const App = () => {
         
         {/* Protected route for employees only */}
         <Route element={<ProtectedRoute allowedRoles={["employee"]} />}>
-        <Route path="/mood" element={<Layout><MoodPage /></Layout>} />
+          <Route path="/mood" element={<Layout><MoodPage /></Layout>} />
           <Route path="/add-feedback" element={<Layout><AddFeedback /></Layout>} />
           <Route path="/resolved" element={<Layout><Resolved/></Layout>}/>
+          <Route path="/resolve" element={<Layout><Resolving/></Layout>}/>
         </Route>
         <Route element={<ProtectedRoute allowedRoles={["admin"]}/>}>
           <Route path="/admin-assign" element={<Layout><AssignConcern/></Layout>}/>
           <Route path="/admin-dashboard" element={<Layout><Dashboard/></Layout>}/>
+          <Route path="/admin-approval" element={<Layout><AdminApproval/></Layout>}/>
         </Route>
-        <Route element={<ProtectedRoute allowedRoles={["problem_solver"]}/>}>
-          <Route path="/resolve" element={<Layout><Resolving/></Layout>}/>
-        </Route>
+        
         <Route path="/all-feedbacks" element={<Layout><Feedbacks /></Layout>} />
         <Route path="/pending" element={<Layout><Pending/></Layout>}/>
         <Route path="/in-progress" element={<Layout><InProgress/></Layout>}/>

@@ -1,6 +1,7 @@
 import { SignInFormData } from "./pages/SignIn";
 import { FeedbackFormData } from "./pages/AddFeedback";
 import { MoodFormData } from "./pages/MoodPage";
+import axios from "axios"
 
 const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "";
 
@@ -105,9 +106,22 @@ export const addFeedback = async (formData :FeedbackFormData) => {
   return body;
 };
 
+// fetch Approved feedbacks function
+export const fetchApprovedFeedbacks = async() => {
+  const response = await fetch(`${API_BASE_URL}/api/feedbacks/approved`, {
+    credentials: "include",
+  });
+
+  if (!response.ok) {
+    throw new Error("Error fetching feedbacks");
+  }
+
+  return response.json();
+};
+
 // fetch feedbacks function
 export const fetchFeedbacks = async() => {
-  const response = await fetch(`${API_BASE_URL}/api/feedbacks/`, {
+  const response = await fetch(`${API_BASE_URL}/api/feedbacks/approved`, {
     credentials: "include",
   });
 
@@ -275,6 +289,35 @@ export const resolveFeedback = async (feedbackId: string) => {
     console.error("Error resolving feedback:", error);
     throw error; // Rethrow error to be handled in the component
   }
+};
+
+// Function for fetching feedbacks for the admin's approval
+export const allFeedbacks = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/api/admin/all-feedbacks`, {
+      withCredentials: true, // Ensure cookies are sent if needed
+    });
+    console.log("✅ Successful response:", response.data);
+    return response.data; // Should return { success: true, feedbacks: [...] }
+  } catch (error: any) {
+    console.error("❌ API call failed:", error.response?.data || error.message);
+    throw new Error("Error fetching feedbacks");
+  }
+};
+
+// Function to fetch the approve feedback endpoint
+export const approveFeedback = async (feedbackId: string) => {
+  const response = await axios.post(
+    `${API_BASE_URL}/api/admin/${feedbackId}/approval`, // Adjust path here
+    {},
+    { withCredentials: true }
+  );
+
+  if (response.status !== 200) {
+    throw new Error('Error approving feedback');
+  }
+
+  return response.data.feedback; // Return the updated feedback directly
 };
 
 // Assign problem solver to feedback

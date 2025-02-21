@@ -55,6 +55,9 @@ const InProgress = () => {
             createdBy={
               feedback.isAnonymous ? "Anonymous" : feedback.name || "Unknown"
             }
+            likedBy={feedback.likedBy}
+            dislikedBy={feedback.dislikedBy}
+            currentUsername="currentUsernamePlaceholder" // Replace with actual current username
             onLike={(id) => console.log(`Liked feedback: ${id}`)} // ✅ Placeholder function
             onDislike={(id) => console.log(`Disliked feedback: ${id}`)} // ✅ Placeholder function
             onCommentClick={() => alert(`Comment on feedback: ${feedback._id}`)}

@@ -50,26 +50,12 @@ const SignIn = () => {
     },
   });
 
-  const mutation3 = useMutation({
-    mutationFn: (data: SignInFormData) => apiClient.signIn(data),
-    onSuccess: async () => {
-      showToast({ message: "Sign in Successful!", type: "SUCCESS" })
-      await queryClient.invalidateQueries({ queryKey: ["validateToken"] })
-      navigate("/resolve", { replace: true });
-    },
-    onError: (error: any) => {
-      console.log(error)
-      showToast({ message: "Login failed. Please try again.", type: "ERROR" })
-    },
-  });
-
   const onSubmit = (data: SignInFormData) => {
     mutation1.mutate(data);
     mutation2.mutate(data);
-    mutation3.mutate(data);
   };
 
-  const isLoading = mutation1.isPending || mutation2.isPending || mutation3.isPending;
+  const isLoading = mutation1.isPending || mutation2.isPending;
 
   return (
     <div className="bg-blue-950 flex h-screen overflow-hidden">

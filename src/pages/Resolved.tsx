@@ -52,6 +52,9 @@ const Resolved = () => {
             dislikes={feedback.dislikes}
             createdBy={feedback.isAnonymous ? "Anonymous" : feedback.name || "Unknown"}
             feedbackId={feedback._id}
+            likedBy={feedback.likedBy || []}
+            dislikedBy={feedback.dislikedBy || []}
+            currentUsername="currentUsernamePlaceholder" // Replace with actual current username
             onLike={() => alert(`Liked feedback: ${feedback._id}`)} // Placeholder like handler
             onDislike={() => alert(`Disliked feedback: ${feedback._id}`)} // Placeholder dislike handler
             onCommentClick={() => alert(`Comment on feedback: ${feedback._id}`)} // Placeholder comment click handler

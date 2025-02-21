@@ -11,7 +11,7 @@ type ToastMessage = {
 type AppContext = {
   showToast: (toastMessage: ToastMessage) => void;
   isLoggedIn: boolean;
-  role: "employee" | "admin" | "problem_solver";
+  role: "employee" | "admin";
   user: { userId: string; username: string; department: string } | null;
 };
 

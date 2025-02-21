@@ -17,8 +17,6 @@ const ProtectedRoute = ({ allowedRoles }: { allowedRoles: string[] }) => {
       return <Navigate to="/admin-assign" replace />;
     } else if (role === "employee") {
       return <Navigate to="/mood" replace />;
-    } else if (role === "problem_solver") {
-      return <Navigate to="/resolve" replace />;
     }
   }
 

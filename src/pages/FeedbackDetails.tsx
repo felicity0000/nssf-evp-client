@@ -28,7 +28,13 @@ const FeedbackDetails = () => {
     if (!comment.trim()) return;
     try {
       await apiClient.addComment(id!, comment);
-      setFeedback({ ...feedback, comments: [...feedback.comments, { comment }] });
+      setFeedback({
+        ...feedback,
+        comments: [
+          ...feedback.comments,
+          { comment, username: "You" }, // Use "You" for now or get the username dynamically
+        ],
+      });
       setComment("");
     } catch {
       alert("Error adding comment");
@@ -51,7 +57,7 @@ const FeedbackDetails = () => {
         {feedback.comments.length > 0 ? (
           feedback.comments.map((c: any, index: number) => (
             <div key={index} className="bg-gray-100 p-3 rounded-lg border border-gray-300">
-              <p className="text-gray-700">{c.comment}</p>
+              <p className="text-gray-700"><strong>{c.username}:</strong> {c.comment}</p>
             </div>
           ))
         ) : (

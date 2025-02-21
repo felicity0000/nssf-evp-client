@@ -90,12 +90,16 @@ const Navbar = () => {
                 {/* Role-specific links */}
                 {role === "admin" && (
                   <>
-                    <NavLink to="/admin-dashboard">
-                      <FaTachometerAlt className="mr-2 text-lg" /> Dashboard
+                    <NavLink to="/admin-approval">
+                      <FaCheckCircle className="mr-2 text-lg" /> Approval
                     </NavLink>
                     <NavLink to="/admin-assign">
                       <FaClipboardList className="mr-2 text-lg" /> Assign
                     </NavLink>
+                    <NavLink to="/admin-dashboard">
+                      <FaTachometerAlt className="mr-2 text-lg" /> Dashboard
+                    </NavLink>
+                    
                   </>
                 )}
                 {role === "employee" && (
@@ -106,12 +110,10 @@ const Navbar = () => {
                     <NavLink to="/resolved">
                       <FaCheckCircle className="mr-2 text-lg" /> Resolved
                     </NavLink>
-                  </>
-                )}
-                {role === "problem_solver" && (
-                  <NavLink to="/resolve">
+                    <NavLink to="/resolve">
                     <FaCheckCircle className="mr-2 text-lg" /> Resolve
                   </NavLink>
+                  </>
                 )}
               </div>
             </div>
