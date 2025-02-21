@@ -58,6 +58,7 @@ const Resolved = () => {
             onLike={() => alert(`Liked feedback: ${feedback._id}`)} // Placeholder like handler
             onDislike={() => alert(`Disliked feedback: ${feedback._id}`)} // Placeholder dislike handler
             onCommentClick={() => alert(`Comment on feedback: ${feedback._id}`)} // Placeholder comment click handler
+            isLoading={loading} // Add isLoading property
           />
         ))}
       </div>

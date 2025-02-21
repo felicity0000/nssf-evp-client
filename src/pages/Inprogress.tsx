@@ -61,6 +61,7 @@ const InProgress = () => {
             onLike={(id) => console.log(`Liked feedback: ${id}`)} // ✅ Placeholder function
             onDislike={(id) => console.log(`Disliked feedback: ${id}`)} // ✅ Placeholder function
             onCommentClick={() => alert(`Comment on feedback: ${feedback._id}`)}
+            isLoading={loading}
           />
         ))}
       </div>
