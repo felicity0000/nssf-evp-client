@@ -43,6 +43,13 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({
   const hasLiked = likedBy.includes(currentUsername);
   const hasDisliked = dislikedBy.includes(currentUsername);
 
+  const statusColor =
+    status === "Resolved"
+      ? "bg-[#6CBE14]"
+      : status === "In Progress"
+      ? "bg-blue-700"
+      : "bg-gray-400";
+
   return (
     <div className="bg-white shadow-lg rounded-xl p-6 max-w-4xl w-full border border-gray-200">
       <h3 className="text-2xl font-semibold mb-1">{title}</h3>
@@ -50,11 +57,15 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({
         Posted by <span className="font-medium">{createdBy}</span>
       </p>
       <p className="text-sm text-gray-400 mb-3">{department} Department</p>
-      <p className="text-gray-700 mb-2"><strong>Concern:</strong> {concern}</p>
-      <p className="text-gray-700 mb-4"><strong>Solution:</strong> {possibleSolution}</p>
+      <p className="text-gray-700 mb-2">
+        <strong>Concern:</strong> {concern}
+      </p>
+      <p className="text-gray-700 mb-4">
+        <strong>Solution:</strong> {possibleSolution}
+      </p>
 
       <div className="flex justify-between items-center mb-4">
-        <span className={`px-3 py-1 text-sm rounded-full text-white ${status === "Resolved" ? "bg-green-500" : "bg-yellow-500"}`}>
+        <span className={`px-3 py-1 text-sm rounded-full text-white ${statusColor}`}>
           {status}
         </span>
         <p className="text-sm text-gray-600">
@@ -65,7 +76,9 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({
       <div className="flex justify-between items-center">
         <div className="flex items-center space-x-4">
           <button
-            className={`flex items-center space-x-1 transition ${hasLiked ? "text-blue-500" : "text-gray-600 hover:text-blue-500"}`}
+            className={`flex items-center space-x-1 transition ${
+              hasLiked ? "text-blue-500" : "text-gray-600 hover:text-blue-500"
+            }`}
             onClick={() => onLike(feedbackId)}
             disabled={isLoading}
           >
@@ -73,7 +86,9 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({
           </button>
 
           <button
-            className={`flex items-center space-x-1 transition ${hasDisliked ? "text-red-500" : "text-gray-600 hover:text-red-500"}`}
+            className={`flex items-center space-x-1 transition ${
+              hasDisliked ? "text-red-500" : "text-gray-600 hover:text-red-500"
+            }`}
             onClick={() => onDislike(feedbackId)}
             disabled={isLoading}
           >

@@ -79,7 +79,7 @@ const AdminApproval = () => {
               </p>
 
               {feedback.approval ? (
-                <span className="inline-block bg-green-500 text-white px-3 py-1 mt-2 rounded-lg">
+                <span className="inline-block bg-[#6BCE14] text-white px-3 py-1 mt-2 rounded-lg">
                   Approved
                 </span>
               ) : (

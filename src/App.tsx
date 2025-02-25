@@ -24,7 +24,6 @@ const App = () => {
         <Route element={<ProtectedRoute allowedRoles={["employee"]} />}>
           <Route path="/mood" element={<Layout><MoodPage /></Layout>} />
           <Route path="/add-feedback" element={<Layout><AddFeedback /></Layout>} />
-          <Route path="/resolved" element={<Layout><Resolved/></Layout>}/>
           <Route path="/resolve" element={<Layout><Resolving/></Layout>}/>
         </Route>
         <Route element={<ProtectedRoute allowedRoles={["admin"]}/>}>
@@ -36,6 +35,7 @@ const App = () => {
         <Route path="/all-feedbacks" element={<Layout><Feedbacks /></Layout>} />
         <Route path="/pending" element={<Layout><Pending/></Layout>}/>
         <Route path="/in-progress" element={<Layout><InProgress/></Layout>}/>
+        <Route path="/resolved" element={<Layout><Resolved/></Layout>}/>
         <Route path="/feedback/:id" element={<Layout><FeedbackDetails/></Layout>}/>
       </Routes>
     </Router>

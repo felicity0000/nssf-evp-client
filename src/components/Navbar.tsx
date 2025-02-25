@@ -47,8 +47,8 @@ const Navbar = () => {
         to={to}
         className={`flex items-center px-4 py-2 rounded-lg transition-all duration-200 ${
           isActive
-            ? "bg-blue-700 text-white shadow-lg transform scale-105"
-            : "text-blue-100 hover:bg-blue-800 hover:text-white hover:shadow-md hover:scale-105"
+            ? "bg-[#6CBE14] text-white shadow-lg transform scale-105"
+            : "text-blue-100 hover:bg-[#6CBE14] hover:text-white hover:shadow-md hover:scale-105"
         }`}
       >
         {children}
@@ -57,7 +57,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-blue-950 shadow-xl">
+    <nav className="bg-blue-900 shadow-xl">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo Section */}
@@ -125,7 +125,7 @@ const Navbar = () => {
               {isLoggedIn ? (
                 <>
                   <button
-                    className="flex items-center space-x-3 bg-blue-800 px-3 py-2 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-800 focus:ring-white"
+                    className="flex items-center space-x-3 bg-blue-950 px-3 py-2 rounded-lg hover:bg-blue-900 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-950 focus:ring-white"
                     onClick={() => setDropdownOpen(!dropdownOpen)}
                   >
                     <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center">

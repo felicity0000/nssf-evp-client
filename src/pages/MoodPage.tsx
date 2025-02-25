@@ -99,7 +99,7 @@ const MoodPage = () => {
           <motion.button
             type="submit"
             disabled={mutation.isPending}
-            className="w-full bg-green-500 hover:bg-green-700 text-white font-medium px-6 py-3 rounded-lg
+            className="w-full bg-[#6BCE14] hover:bg-green-700 text-white font-medium px-6 py-3 rounded-lg
                      focus:outline-none focus:ring-2 focus:ring-green-200 
                      disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
             whileHover={{ scale: 1.02 }}

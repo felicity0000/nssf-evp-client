@@ -111,7 +111,7 @@ const SignIn = () => {
                 <input
                   type="text"
                   {...register("username", { required: "Username is required" })}
-                  className="w-full px-4 py-2 bg-gray-100 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none transition-all duration-200"
+                  className="w-full px-4 py-2 bg-gray-100 rounded-lg focus:ring-2 focus:ring-[#6CBE14] focus:outline-none transition-all duration-200"
                   placeholder="Enter your username"
                 />
                 {errors.username && (
@@ -133,7 +133,7 @@ const SignIn = () => {
                 <input
                   type="text"
                   {...register("department", { required: "Department is required" })}
-                  className="w-full px-4 py-2 bg-gray-100 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none transition-all duration-200"
+                  className="w-full px-4 py-2 bg-gray-100 rounded-lg focus:ring-2 focus:ring-[#6CBE14] focus:outline-none transition-all duration-200"
                   placeholder="Enter your department"
                 />
                 {errors.department && (
@@ -152,7 +152,7 @@ const SignIn = () => {
             <motion.button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-green-600 hover:bg-green-700 text-white text-lg font-semibold py-3 rounded-lg shadow-lg
+              className="w-full bg-[#6CBE14] text-white text-lg font-semibold py-3 rounded-lg shadow-lg
                        disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 mt-6"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
